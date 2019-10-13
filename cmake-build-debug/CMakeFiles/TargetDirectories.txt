@@ -1,0 +1,3 @@
+D:/CP/car-shop/cmake-build-debug/CMakeFiles/car_shop.dir
+D:/CP/car-shop/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/CP/car-shop/cmake-build-debug/CMakeFiles/rebuild_cache.dir
