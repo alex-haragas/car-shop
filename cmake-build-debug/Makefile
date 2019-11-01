@@ -122,6 +122,33 @@ car_shop/fast:
 	$(MAKE) -f CMakeFiles\car_shop.dir\build.make CMakeFiles/car_shop.dir/build
 .PHONY : car_shop/fast
 
+customer.obj: customer.c.obj
+
+.PHONY : customer.obj
+
+# target to build an object file
+customer.c.obj:
+	$(MAKE) -f CMakeFiles\car_shop.dir\build.make CMakeFiles/car_shop.dir/customer.c.obj
+.PHONY : customer.c.obj
+
+customer.i: customer.c.i
+
+.PHONY : customer.i
+
+# target to preprocess a source file
+customer.c.i:
+	$(MAKE) -f CMakeFiles\car_shop.dir\build.make CMakeFiles/car_shop.dir/customer.c.i
+.PHONY : customer.c.i
+
+customer.s: customer.c.s
+
+.PHONY : customer.s
+
+# target to generate assembly for a file
+customer.c.s:
+	$(MAKE) -f CMakeFiles\car_shop.dir\build.make CMakeFiles/car_shop.dir/customer.c.s
+.PHONY : customer.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -158,6 +185,9 @@ help:
 	@echo ... car_shop
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... customer.obj
+	@echo ... customer.i
+	@echo ... customer.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

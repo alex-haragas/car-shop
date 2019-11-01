@@ -3,4 +3,4 @@ project(car_shop C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(car_shop main.c)
+add_executable(car_shop main.c customer.h customer.c)

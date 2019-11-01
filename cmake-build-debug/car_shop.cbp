@@ -74,6 +74,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/CP/car-shop/customer.c">
+			<Option target="car_shop"/>
+		</Unit>
+		<Unit filename="D:/CP/car-shop/customer.h">
+			<Option target="car_shop"/>
+		</Unit>
 		<Unit filename="D:/CP/car-shop/main.c">
 			<Option target="car_shop"/>
 		</Unit>

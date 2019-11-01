@@ -1,5 +1,10 @@
 #include <stdio.h>
+#include "customer.h"
+int getChoiceindex(int noOfChoices, int *state);
 
+#define  MAX_BRAND_NAME 10
+void displayBrandOptions(int noOfBrands,char brands[][MAX_BRAND_NAME]);
+void displaymodelotions(int noModels[],int brandChoice, char brands[],char models[][10], double prices[][10]);
 int main() {
     printf("Welcome to our car shop.\n");
 
@@ -7,7 +12,7 @@ int main() {
     int noOfBrands = 3;
     char brands[][10] = {"Audi","BMW","Bentley"};
     int noModels[] = {3,3,3};
-    char models[3][3][10] = {
+    char models[3][3][MAX_BRAND_NAME] = {
             {"Audi A7", "Audi A8", "Audi Q2"},
             {"BMW 1", "BMW 2", "BMW 3"},
             {"Bentley 1", "Bentley 2", "Bentley 3"}
@@ -36,54 +41,18 @@ int main() {
         switch (state) {
             case 0: {
                 // Input personal data
-                printf("Please input your data\n");
-                printf("---First name:\n");
-                gets(firstName);
-                printf("---Last name:\n");
-                gets(lastName);
-                printf("---Phone number\n");
-                gets(phoneNumber);
-                printf("---Address\n");
-                gets(address);
+                InputCustomerData(firstName, lastName, phoneNumber, address);
                 state++;
                 break;
             }
             case 1: {
-                // Choose the brand
-                printf("Please choose the car brand\n");
-                for(int i=0;i<noOfBrands;i++) {
-                    putchar('a'+i);
-                    printf(") %s\n",brands[i]);
-                }
-                printf("%c) Go back\n",'a'+noOfBrands);
-                choice = getchar();
-                // consume new line
-                getchar();
-                if(choice == 'a'+noOfBrands) {
-                    state--;
-                    break;
-                }
-                brandChoice = choice - 'a';
-                state++;
+                displayBrandOptions(noOfBrands,brands);
+                brandChoice=getChoiceindex(noOfBrands, &state);
                 break;
             }
             case 2: {
-                // Choose the car model
-                printf("Please choose the car model for brand %s\n",brands[brandChoice]);
-                for(int i=0;i<noOfBrands;i++) {
-                    putchar('a'+i);
-                    printf(") %s (%.2f)\n",models[brandChoice][i], prices[brandChoice][i]);
-                }
-                printf("%c) Go back\n",'a'+noModels[brandChoice]);
-                choice = getchar();
-                // consume new line
-                getchar();
-                if(choice == 'a'+noModels[brandChoice]) {
-                    state--;
-                    break;
-                }
-                modelChoice = choice - 'a';
-                state++;
+                displaymodelotions(noModels[brandChoice],brandChoice, brands[brandChoice],models[brandChoice],prices);
+                modelChoice=getChoiceindex(noModels[brandChoice], &state);
                 break;
             }
             case 3: {
@@ -124,10 +93,7 @@ int main() {
                 // Display contract
                 printf("Your contract is:\n");
                 printf("-------------\n");
-                printf("Customer data:\n");
-                printf("-name: %s %s\n", firstName, lastName);
-                printf("-phone number: %s\n", phoneNumber);
-                printf("-address: %s\n", address);
+                DisplayCustomerData( firstName, lastName, phoneNumber, address);
                 printf("Car data:\n");
                 printf("-car model: %s (%.2f)\n", models[brandChoice][modelChoice], prices[brandChoice][modelChoice]);
                 double additionalItemsPrice = 0;
@@ -157,4 +123,40 @@ int main() {
         }
     }
     return 0;
+}
+
+int getChoiceindex(int noOfChoices, int *state)
+{
+    int ChoiceIndex;
+    char choice = getchar();
+    // consume new line
+    getchar();
+    if(choice == 'a'+noOfChoices) {
+        (*state)--;
+    }
+    else{
+        ChoiceIndex = choice - 'a';
+        (*state)++;
+    }
+    return ChoiceIndex;
+}
+void displayBrandOptions(int noOfBrands,char brands[][MAX_BRAND_NAME])
+{
+    // Choose the brand
+    printf("Please choose the car brand\n");
+    for(int i=0;i<noOfBrands;i++) {
+        putchar('a'+i);
+        printf(") %s\n",brands[i]);
+    }
+    printf("%c) Go back\n",'a'+noOfBrands);
+}
+void displaymodelotions(int noModels[],int brandChoice, char brands[],char models[][10], double prices[][10])
+{
+    // Choose the car model
+    printf("Please choose the car model for brand %s\n",brands[brandChoice]);
+    for(int i=0;i<noModels[brandChoice];i++) {
+        putchar('a'+i);
+        printf(") %s (%.2f)\n",models[brandChoice][i], prices[brandChoice][i]);
+    }
+    printf("%c) Go back\n",'a'+noModels[brandChoice]);
 }

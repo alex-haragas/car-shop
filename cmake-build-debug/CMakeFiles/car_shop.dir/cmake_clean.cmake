@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/car_shop.dir/customer.c.obj"
   "CMakeFiles/car_shop.dir/main.c.obj"
   "car_shop.exe"
   "car_shop.exe.manifest"
